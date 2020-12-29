@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.jc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+List logger = [
+        'org.slf4j:slf4j-log4j12:1.7.25'
+]
+
+dependencies {
+//    implementation logger
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation ('org.springframework.boot:spring-boot-starter-web'){
+        exclude group: "org.slf4j",module: "slf4j-log4j12"
+    }
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation ("org.fisco-bcos.java-sdk:fisco-bcos-java-sdk:2.8.0-SNAPSHOT") {
+        exclude group: "org.slf4j",module: "slf4j-api"
+    }
+    implementation ("ch.qos.logback:logback-classic:1.2.3")
+}
+
+test {
+    useJUnitPlatform()
+}
