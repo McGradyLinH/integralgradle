@@ -28,7 +28,9 @@ public class AssetClient implements ApplicationContextAware {
 
     static Logger logger = LoggerFactory.getLogger(AssetClient.class);
     //本地合约地址
-    private static final String CONTRACT_ADDRESS = "0x1d666e17905703c9fada0d4bedcd81f180f9784e";
+//    private static final String CONTRACT_ADDRESS = "0x1d666e17905703c9fada0d4bedcd81f180f9784e";
+    //remote
+    private static final String CONTRACT_ADDRESS = "0x15db39e49168cc0d2afb38f43817bcdb788fa01a";
 
     private ApplicationContext context;
 
@@ -37,8 +39,8 @@ public class AssetClient implements ApplicationContextAware {
     private CryptoKeyPair cryptoKeyPair;
 
     public void initialize() {
-        ApplicationContext context =
-                new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+//        ApplicationContext context =
+//                new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         bcosSDK = context.getBean(BcosSDK.class);
         client = bcosSDK.getClient(1);
         cryptoKeyPair = client.getCryptoSuite().createKeyPair();

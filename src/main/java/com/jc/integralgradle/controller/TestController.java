@@ -28,7 +28,7 @@ public class TestController {
     @GetMapping
     public String getAccount(String amount) {
         Tuple2<BigInteger, BigInteger> assetAmount = assetClient.queryAssetAmount(amount);
-        return assetAmount.getValue2().toString();
+        return assetAmount == null ? "暂无" : assetAmount.getValue2().toString();
     }
 
     @PostMapping
